@@ -45,3 +45,26 @@ CREATE TABLE tb_seguidores (
 );
 
 ALTER TABLE tb_usuario ADD FOREIGN KEY (foto_de_perfil_id) REFERENCES tb_foto (uri);
+
+-- Insert
+
+INSERT INTO tb_usuario (nome, email, nascimento, website, genero, telefone, foto_de_perfil_id) VALUES ('João Silva', 'joao@gmail.com', '1991-10-15', null, 'M', null, null);
+INSERT INTO tb_usuario (nome, email, nascimento, website, genero, telefone, foto_de_perfil_id) VALUES ('Maria Alice', 'alice@gmail.com', '1999-04-15', 'youtube.com/alice', 'F', null, null);
+INSERT INTO tb_usuario (nome, email, nascimento, website, genero, telefone, foto_de_perfil_id) VALUES ('Carlos Alves', 'carlos@yahoo.com', null, null, 'M', '99777-8383', null);
+INSERT INTO tb_usuario (nome, email, nascimento, website, genero, telefone, foto_de_perfil_id) VALUES ('Ana Clara', 'clara@gmail.com', '1997-01-23', 'blog.clara.com', 'F', '88181-2820', null);
+
+INSERT INTO tb_seguidores (seguidor_id, seguido_id) VALUES (1, 3);
+INSERT INTO tb_seguidores (seguidor_id, seguido_id) VALUES (1, 4);
+INSERT INTO tb_seguidores (seguidor_id, seguido_id) VALUES (3, 4);
+INSERT INTO tb_seguidores (seguidor_id, seguido_id) VALUES (2, 4);
+
+INSERT INTO tb_postagem (texto, instante, autor_id) VALUES ('#partiu festa!', TIMESTAMP WITH TIME ZONE '2017-08-09T19:34:20Z', 4);
+INSERT INTO tb_postagem (texto, instante, autor_id) VALUES ('Bom dia pessoal!', TIMESTAMP WITH TIME ZONE '2017-08-10T07:50:00Z', 4);
+
+INSERT INTO tb_album (titulo, instante_de_postagem, usuario_id) VALUES ('Ferias de verão', TIMESTAMP WITH TIME ZONE '2017-01-13T13:50:13', 3);
+UPDATE tb_album SET instante_de_postagem = TIMESTAMP WITH TIME ZONE '2017-01-13T13:50:13Z' WHERE id = 1;
+DELETE FROM tb_album WHERE id = 2;
+
+INSERT INTO tb_foto (uri, instante_de_postagem, postagem_id, usuario_id, album_id) VALUES ('http://dominio.com/praia1.jpg', TIMESTAMP WITH TIME ZONE '2017-01-10T10:20:14Z', null, 3, 1);
+INSERT INTO tb_foto (uri, instante_de_postagem, postagem_id, usuario_id, album_id) VALUES ('http://dominio.com/praia2.jpg', TIMESTAMP WITH TIME ZONE '2017-01-10T10:31:12Z', null, 3, 1);
+
