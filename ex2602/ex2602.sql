@@ -17,6 +17,12 @@ VALUES
 
 SELECT * FROM customers;
 
+-- todos os clientes cujo estado seja ‘RS’
 SELECT name
 FROM customers
 WHERE state = 'RS';
+
+--nomes e os endereços dos clientes que moram em 'Porto Alegre'
+SELECT name, street
+FROM customers
+WHERE city  = 'Porto Alegre';
