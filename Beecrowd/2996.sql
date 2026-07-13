@@ -48,7 +48,21 @@ SELECT *
 FROM packages
 INNER JOIN users ON packages.id_user_sender = users.id
 
+SELECT id_user_sender, sender.name, id_user_receiver, receiver.name, color, year, sender.address, receiver.address
+FROM packages
+INNER JOIN users AS sender ON packages.id_user_sender = sender.id
+INNER JOIN users AS receiver ON packages.id_user_receiver = receiver.id;
 
+SELECT 
+sender.name AS sender,
+receiver.name AS receiver,
+color,
+year,
+sender.address AS address_sender, 
+receiver.address AS address_receiver
+FROM packages
+INNER JOIN users AS sender ON packages.id_user_sender = sender.id
+INNER JOIN users AS receiver ON packages.id_user_receiver = receiver.id;
 
 SELECT 
 year, 
@@ -58,20 +72,3 @@ FROM packages
 INNER JOIN users AS sender ON packages.id_user_sender = sender.id
 INNER JOIN users AS receiver ON packages.id_user_receiver = receiver.id
 WHERE (color = 'blue' OR year = 2015) AND (sender.address != 'Taiwan' AND receiver.address != 'Taiwan');
-
-SELECT
-	p.year,
-	sender.name AS sender,
-	receiver.name AS receiver
-FROM
-	packages p
-		INNER JOIN users AS sender
-		    ON p.id_user_sender = sender.id
-		INNER JOIN users AS receiver
-		    ON p.id_user_receiver = receiver.id
-WHERE
-	(p.color = 'blue' OR p.year = 2015)
-	AND
-	(sender.address != 'Taiwan' AND receiver.address !='Taiwan')
-ORDER BY
-	p.year DESC
