@@ -73,7 +73,40 @@ ORDER BY data DESC, nome ASC;
 
 /*QUESTÃO 4 : nome e nota total dos alunos da turma 10 (ATENÇÃO: você deve restringir a turma pelo número 10 dela, e não pelo id 2).*/
 
+SELECT * FROM tb_resultado;
 
+SELECT *
+FROM tb_resultado
+INNER JOIN tb_aluno ON tb_resultado.aluno_id = tb_aluno.cpf
+INNER JOIN tb_avaliacao ON tb_resultado.avaliacao_id = tb_avaliacao.id
+INNER JOIN tb_turma ON tb_avaliacao.turma_id = tb_turma.id;
 
+SELECT
+nome,
+nota_obtida,
+numero
+FROM tb_resultado
+INNER JOIN tb_aluno ON tb_resultado.aluno_id = tb_aluno.cpf
+INNER JOIN tb_avaliacao ON tb_resultado.avaliacao_id = tb_avaliacao.id
+INNER JOIN tb_turma ON tb_avaliacao.turma_id = tb_turma.id;
 
+SELECT
+nome,
+nota_obtida,
+numero
+FROM tb_resultado
+INNER JOIN tb_aluno ON tb_resultado.aluno_id = tb_aluno.cpf
+INNER JOIN tb_avaliacao ON tb_resultado.avaliacao_id = tb_avaliacao.id
+INNER JOIN tb_turma ON tb_avaliacao.turma_id = tb_turma.id
+WHERE numero = 10
+order by nome;
 
+SELECT
+nome,
+SUM(nota_obtida) AS total
+FROM tb_resultado
+INNER JOIN tb_aluno ON tb_resultado.aluno_id = tb_aluno.cpf
+INNER JOIN tb_avaliacao ON tb_resultado.avaliacao_id = tb_avaliacao.id
+INNER JOIN tb_turma ON tb_avaliacao.turma_id = tb_turma.id
+WHERE numero = 10
+GROUP BY nome;
